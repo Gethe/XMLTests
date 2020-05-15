@@ -1,18 +1,12 @@
-Aurora [![Build Status](https://travis-ci.org/Gethe/Aurora.svg?branch=master)](https://travis-ci.org/Gethe/Aurora)
+XML Test
 ======
 
-Aurora is an addon which restyles the default Blizzard interface to a clean, minimalistic theme which is consistent across the entire UI.
+This is an addon that demonstrates various techniques available in World of Warcaft's UI XML.
 
-A lot of time has been spent on not only basic development and updates, but also refining and perfecting the appearance of each window and every frame.
+### Additional Info ###
 
-A single color, that either matches your current class or is a color of your choosing, is used for highlights and emphasis.
+Based on a conversation in #wowuidev IRC, I wanted to see how an addon might be able to use the `<ScopedModifier>` XML tag. The tag on it's own seems to do nothing. The same is true of two known attributes: `forbidden` and `fullLockdown`. These are likely related to internal secure code, and are only usable by Blizzard addons.
 
-Options
--------
+The third attriute, `scriptsUseGivenEnv`, could actually be quite useful to community addons. This attribute allows an XML to use a mixin that is keyed into the private addon table. See the code for an example.
 
-Open the Aurora options from the in-game addon options, or type /aurora.
-
-Bug reports
------------
-
-Please report all issues on [GitHub](https://github.com/Haleth/Aurora).
+This may need further testing, but it seems that it only effects the `mixin` widget attribute and the associated `method` attribute for scripts. Any string used in a `text` attribute are not found, as well as `function` for widget scripts.
