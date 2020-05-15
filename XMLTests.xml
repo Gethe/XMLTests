@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Script file="XMLTestMixin.lua"/>
+    <ScopedModifier scriptsUseGivenEnv="true">
+        <Frame name="XMLTestMixinTemplate" mixin="XMLTestMixin" virtual="true">
+            <Scripts>
+                <OnLoad method="OnPreLoad" intrinsicOrder="precall" />
+                <OnShow method="OnPostShow" intrinsicOrder="postcall" />
+                <OnSizeChanged method="OnPreSizeChanged" intrinsicOrder="precall" />
+            </Scripts>
+        </Frame>
+    </ScopedModifier>
+
+    <Frame name="XMLTestIntrinsic" clipChildren="true" intrinsic="true">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="background" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="0.5"/>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture parentKey="foreground" setAllPoints="true">
+                    <Color r="1" g="1" b="1" a="0.5"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Animations>
+            <AnimationGroup parentKey="spin">
+                <Rotation parentKey="rotate" childKey="foreground" duration="10" order="1" degrees="360"/>
+            </AnimationGroup>
+        </Animations>
+    </Frame>
+
+    <Script file="XMLTest.lua"/>
+</Ui>

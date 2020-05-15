@@ -1,0 +1,5 @@
+## Interface: 80300
+## Title: XML Tests
+
+XMLTests.xml
+XMLTests.lua
