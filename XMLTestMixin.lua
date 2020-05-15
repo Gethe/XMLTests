@@ -1,20 +1,35 @@
 local _, private = ...
 
-local XMLTestMixin = {}
-private.XMLTestMixin = XMLTestMixin
+_G.GLOBAL_TEXT = "Global Text"
+private.PRIVATE_TEXT = "Private Text"
 
-function XMLTestMixin:OnPreLoad()
+local XMLIntrinsicMixin = {}
+private.XMLIntrinsicMixin = XMLIntrinsicMixin
+
+function XMLIntrinsicMixin:OnPreLoad()
     _G.print("PreLoad")
-    self.spin:Play()
 end
-function XMLTestMixin:OnPostLoad()
+function XMLIntrinsicMixin:OnPostLoad()
     _G.print("PostLoad")
 end
 
 
-local XMLTestFrameMixin = {}
-private.XMLTestFrameMixin = XMLTestFrameMixin
+local XMLTemplateMixin = {}
+private.XMLTemplateMixin = XMLTemplateMixin
 
-function XMLTestFrameMixin:OnLoad()
-    _G.print("OnLoad")
+function XMLTemplateMixin:OnLoad()
+    _G.print("Mixin OnLoad")
+    self.spin:Play()
 end
+
+function private.XMLTemplate_OnLoad(self)
+    _G.print("private OnLoad")
+    self.spin:Play()
+end
+
+--[[
+function _G.XMLTemplate_OnLoad(self)
+    _G.print("global OnLoad")
+    self.spin:Play()
+end
+]]

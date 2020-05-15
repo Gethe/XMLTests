@@ -3,34 +3,52 @@
 
     <Script file="XMLTestMixin.lua"/>
     <ScopedModifier scriptsUseGivenEnv="true">
-        <Frame name="XMLTestMixinTemplate" mixin="XMLTestMixin" virtual="true">
+        <Frame name="XMLTestIntrinsic" mixin="XMLIntrinsicMixin" intrinsic="true">
             <Scripts>
                 <OnLoad method="OnPreLoad" intrinsicOrder="precall" />
-                <OnShow method="OnPostShow" intrinsicOrder="postcall" />
-                <OnSizeChanged method="OnPreSizeChanged" intrinsicOrder="precall" />
+                <OnLoad method="OnPostLoad" intrinsicOrder="postcall" />
+            </Scripts>
+        </Frame>
+
+        <Frame name="XMLTestTemplate" clipChildren="true" mixin="XMLTemplateMixin" virtual="true">
+            <Layers>
+                <Layer level="BACKGROUND">
+                    <Texture parentKey="background" setAllPoints="true">
+                        <Color r="0" g="0" b="0" a="0.5"/>
+                    </Texture>
+                </Layer>
+                <Layer level="ARTWORK">
+                    <Texture parentKey="foreground" setAllPoints="true">
+                        <Color r="1" g="1" b="1" a="0.5"/>
+                    </Texture>
+                    <FontString parentKey="globalText" inherits="GameFontNormal" text="GLOBAL_TEXT">
+                        <Anchors>
+                            <Anchor point="CENTER" x="0" y="20"/>
+                        </Anchors>
+                    </FontString>
+                    <FontString parentKey="privateText" inherits="GameFontNormal" text="PRIVATE_TEXT">
+                        <Anchors>
+                            <Anchor point="CENTER" x="0" y="0"/>
+                        </Anchors>
+                    </FontString>
+                    <FontString parentKey="localText" inherits="GameFontNormal" text="Local Text">
+                        <Anchors>
+                            <Anchor point="CENTER" x="0" y="-20"/>
+                        </Anchors>
+                    </FontString>
+                </Layer>
+            </Layers>
+            <Animations>
+                <AnimationGroup parentKey="spin">
+                    <Rotation parentKey="rotate" childKey="foreground" duration="10" order="1" degrees="360"/>
+                </AnimationGroup>
+            </Animations>
+            <Scripts>
+                <!-- This doesn't work
+                <OnLoad function="XMLTemplate_OnLoad" />
+                -->
+                <OnLoad method="OnLoad" />
             </Scripts>
         </Frame>
     </ScopedModifier>
-
-    <Frame name="XMLTestIntrinsic" clipChildren="true" intrinsic="true">
-        <Layers>
-            <Layer level="BACKGROUND">
-                <Texture parentKey="background" setAllPoints="true">
-                    <Color r="0" g="0" b="0" a="0.5"/>
-                </Texture>
-            </Layer>
-            <Layer level="ARTWORK">
-                <Texture parentKey="foreground" setAllPoints="true">
-                    <Color r="1" g="1" b="1" a="0.5"/>
-                </Texture>
-            </Layer>
-        </Layers>
-        <Animations>
-            <AnimationGroup parentKey="spin">
-                <Rotation parentKey="rotate" childKey="foreground" duration="10" order="1" degrees="360"/>
-            </AnimationGroup>
-        </Animations>
-    </Frame>
-
-    <Script file="XMLTest.lua"/>
 </Ui>
